@@ -139,7 +139,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand atualiza = new MySqlCommand("update Estudio_Turma t inner join Modalidade m on m.idEstudio_Turma = t.idModalidade  set  t.professorTurma= '" + professor + "', t.diasemanaTurma = '" + dia_semana + "', t.horaTurma = '" + hora + "' where m.descricaoModalidade = '" +desc  + "'", DAOConexao.con);
+                MySqlCommand atualiza = new MySqlCommand("update Estudio_Turma t inner join Modalidade m on m.idEstudio_T = t.idModalidade  set  t.professorTurma= '" + professor + "', t.diasemanaTurma = '" + dia_semana + "', t.horaTurma = '" + hora + "' where m.descricaoModalidade = '" +desc  + "'", DAOConexao.con);
                 atualiza.ExecuteNonQuery();
                 exc = true;
             }

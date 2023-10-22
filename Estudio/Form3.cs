@@ -95,5 +95,15 @@ namespace Estudio
 
 
         }
+
+        private void txtCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void txtCPF_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
