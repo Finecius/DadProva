@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,13 +43,22 @@ namespace Estudio
             
             Modalidade modalidade = new Modalidade(descricao, preco, qtdeAlunos, qtedeAulas);
 
-         
-            
+
+            MySqlDataReader r = modalidade.consultarModal();
+
+            r.Read();
+            string desc = r["descricaoModalidade"].ToString();
+
+            if (desc.Equals(descricao))
+                MessageBox.Show("Modalidade ja existente");
+            else
+            {
+
                 if (modalidade.cadastrarModal())
                     MessageBox.Show("Cadastro realizado com sucesso");
                 else
                     MessageBox.Show("Erro no cadastro");
-            
+            }
             
 
         }

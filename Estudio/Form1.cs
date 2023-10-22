@@ -47,6 +47,11 @@ namespace Estudio
                 groupBox1.Visible = false;
                 menuStrip1.Enabled = true;
                 cadastrarLoginToolStripMenuItem.Enabled = false;
+                cadastrarToolStripMenuItem.Enabled = false;
+                cadastrarToolStripMenuItem1.Enabled = false;
+                excluirToolStripMenuItem.Enabled = false;
+                excluirToolStripMenuItem1.Enabled = false;
+
             }
                 
 

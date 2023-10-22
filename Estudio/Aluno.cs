@@ -199,7 +199,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Estudio_Aluno WHERE CPFAluno= '" + CPF + "'", DAOConexao.con);
+                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Estudio_Aluno WHERE CPFAluno= '" + CPF + "';", DAOConexao.con);
                 MySqlDataReader resultado = consulta.ExecuteReader();
                 if (resultado.Read())
                 {
@@ -223,7 +223,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand insere = new MySqlCommand("insert into Estudio_Aluno (CPFAluno, nomeAluno, ruaAluno, numeroAluno, bairroAluno, complementoAluno, CEPAluno, cidadeAluno, estadoAluno, telefoneAluno, emailAluno) values ('" + CPF + "','" + Nome + "','" + Rua + "','" + Numero + "','" + Bairro + "','" + Complemento + "','" + CEP + "','" + Cidade + "','" + Estado + "','" + Telefone + "','" + Email + "')",DAOConexao.con);
+                MySqlCommand insere = new MySqlCommand("insert into Estudio_Aluno (CPFAluno, nomeAluno, ruaAluno, numeroAluno, bairroAluno, complementoAluno, CEPAluno, cidadeAluno, estadoAluno, telefoneAluno, emailAluno) values ('" + CPF + "','" + Nome + "','" + Rua + "','" + Numero + "','" + Bairro + "','" + Complemento + "','" + CEP + "','" + Cidade + "','" + Estado + "','" + Telefone + "','" + Email + "');",DAOConexao.con);
                 insere.ExecuteNonQuery();
                 cad = true;
 
@@ -244,7 +244,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand exclui = new MySqlCommand("delete * from Estudio_Aluno where CPFAluno = '" + CPF + "'", DAOConexao.con);
+                MySqlCommand exclui = new MySqlCommand("update Estudio_Aluno set ativa = 0 where CPFAluno = '" + CPF + "';", DAOConexao.con);
                 exclui.ExecuteNonQuery();
                 exc = true;
             }catch(Exception ex)
@@ -267,7 +267,7 @@ namespace Estudio
                 if (verificaCPF())
                 {
                     Console.WriteLine("update Estudio_Aluno set nomeAluno = '" + Nome + "', ruaAluno = '" + Rua + "', numeroAluno = '" + Numero + "', bairroAluno = '" + Bairro + "' complementoAluno ='" + Complemento + "',CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno = '" + Telefone + "', emailAluno = '" + Email + "' where CPFAluno = '" + CPF + "'");
-                    MySqlCommand atualiza = new MySqlCommand("update Estudio_Aluno set nomeAluno = '" + Nome + "', ruaAluno = '" + Rua + "', numeroAluno = '" + Numero + "', bairroAluno = '" + Bairro + "', complementoAluno ='" + Complemento + "',CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno = '" + Telefone + "', emailAluno = '" + Email + "' where CPFAluno = '" + CPF + "'", DAOConexao.con);
+                    MySqlCommand atualiza = new MySqlCommand("update Estudio_Aluno set nomeAluno = '" + Nome + "', ruaAluno = '" + Rua + "', numeroAluno = '" + Numero + "', bairroAluno = '" + Bairro + "', complementoAluno ='" + Complemento + "',CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno = '" + Telefone + "', emailAluno = '" + Email + "', set ativa = 1 where CPFAluno = '" + CPF + "';", DAOConexao.con);
                     atualiza.ExecuteNonQuery();
                     exc = true;
                 }

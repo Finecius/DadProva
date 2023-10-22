@@ -57,10 +57,8 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand insere = new MySqlCommand("insert into Estudio_Turma (professorTurma, diaSemanaTurma, horaTurma" +
-                    ", idModalidade) values ('" + professor + "', '" + dia_semana + "', '" + hora + 
-                    "', " + modalidade + ");", DAOConexao.con);
-                insere.ExecuteNonQuery();
+                MySqlCommand insere = new MySqlCommand("insert into Estudio_Turma (idModalidade, professorTurma, diasemanaTurma, horaTurma) values ('" + modalidade + "','" + professor + "','" + dia_semana + "','" + hora + "');", DAOConexao.con);
+                insere.ExecuteNonQuery();   
                 cad = true;
             }
             catch (Exception ex)
@@ -104,7 +102,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE ativa = 1'", DAOConexao.con);
+                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE ativa = 1;", DAOConexao.con);
                 resultado = consulta.ExecuteReader();
 
             }
@@ -139,7 +137,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand atualiza = new MySqlCommand("update Estudio_Turma t inner join Modalidade m on m.idEstudio_T = t.idModalidade  set  t.professorTurma= '" + professor + "', t.diasemanaTurma = '" + dia_semana + "', t.horaTurma = '" + hora + "' where m.descricaoModalidade = '" +desc  + "'", DAOConexao.con);
+                MySqlCommand atualiza = new MySqlCommand("update Estudio_Turma t inner join Modalidade m on m.idEstudio_T = t.idModalidade  set  t.professorTurma= '" + professor + "', t.diasemanaTurma = '" + dia_semana + "', t.horaTurma = '" + hora + "' where m.descricaoModalidade = '" +desc  + "';", DAOConexao.con);
                 atualiza.ExecuteNonQuery();
                 exc = true;
             }

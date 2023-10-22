@@ -72,7 +72,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand insere = new MySqlCommand("insert into Modalidade (descricaoModalidade, precoModalidade, qtdeAlunos, qtdeAulas,ativa) values ('" + descricao + "','" + preco + "','" + qtde_alunos + "','" + qtde_aulas +"','1')", DAOConexao.con);
+                MySqlCommand insere = new MySqlCommand("insert into Modalidade (descricaoModalidade, precoModalidade, qtdeAlunos, qtdeAulas,ativa) values ('" + descricao + "','" + preco + "','" + qtde_alunos + "','" + qtde_aulas +"','1');", DAOConexao.con);
                 insere.ExecuteNonQuery();
                 cad = true;
             }
@@ -94,7 +94,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Modalidade WHERE ativa = 1", DAOConexao.con);
+                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Modalidade WHERE ativa = 1;", DAOConexao.con);
                  resultado = consulta.ExecuteReader();
               
             }
@@ -112,6 +112,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
+                
                // Console.WriteLine("update Modalidade set  descricaoModalidade= '" + descricao + "', precoModalidade = '" + preco + "', qtdeAlunos = '" + qtde_alunos + "', qtdeAulas = '" + qtde_aulas+ "'");
                 MySqlCommand atualiza = new MySqlCommand("update Modalidade set  descricaoModalidade= '" + descricao + "', precoModalidade = '" + preco + "', qtdeAlunos = '" + qtde_alunos + "', qtdeAulas = '" + qtde_aulas + "' where idEstudio_Modalidade = '"+id+"'", DAOConexao.con);
                 atualiza.ExecuteNonQuery();

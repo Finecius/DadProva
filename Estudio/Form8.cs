@@ -57,9 +57,8 @@ namespace Estudio
             Modalidade modalidadeEscolhida = new Modalidade(textBox1.Text);
             MySqlDataReader r = modalidadeEscolhida.consultarModal();
             r.Read();
-
-
             int idModalidadeEscolhida = int.Parse(r["idEstudio_Modalidade"].ToString());
+            
             String professor = textBox2.Text;
             String dia = textBox3.Text;
             String hora = maskedTextBox1.Text;
