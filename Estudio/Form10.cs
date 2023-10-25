@@ -134,6 +134,8 @@ namespace Estudio
 
         }
 
+        
+
         private void dataGridView1_RowHeadersWidthSizeModeChanged(object sender, DataGridViewAutoSizeModeEventArgs e)
         {
 

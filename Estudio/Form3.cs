@@ -69,28 +69,35 @@ namespace Estudio
             Aluno aluno = new Aluno(txtCPF.Text);
             if (e.KeyChar == 13)
             {
-                aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEndereco.Text, txtNumero.Text, txtBairro.Text, txtComplemento.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTelefone.Text, txtEmail.Text); ;
-                if (aluno.consultarAluno())
-                {
-                    aluno = new Aluno(txtNome.Text, txtEndereco.Text, txtNumero.Text, txtBairro.Text, txtComplemento.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTelefone.Text, txtEmail.Text);
-                    if (aluno.atualizarAluno())
-                    {
-                        MessageBox.Show("Aluno atualizado");
-                    }
 
-                }
-                else
+                
+                if (aluno.verificaCPF(txtCPF.Text))
                 {
                     if (aluno.consultarAluno())
                     {
                         MessageBox.Show("Aluno já cadastrado!");
+
+                       
+
+
+                        txtNome.Enabled = false;
+                        txtEndereco.Enabled = false;
+                        txtNumero.Enabled = false;
+                        txtBairro.Enabled = false;
+                        txtComplemento.Enabled = false;
+                        txtCEP.Enabled = false;
+                        txtCidade.Enabled = false;
+                        txtEstado.Enabled = false;
+                        txtTelefone.Enabled = false;
+                        txtEmail.Enabled = false;
+                        
                     }
                     else
-                    {
-                        txtNome.Focus();
-                    }
-                    DAOConexao.con.Close();
+                      txtNome.Focus();
+                 
                 }
+                else
+                    MessageBox.Show("CPF inválido");
             }
 
 

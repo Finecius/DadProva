@@ -216,7 +216,49 @@ namespace Estudio
             }
             return existe;
         }
-     
+
+
+        public MySqlDataReader consultartodosAlunoCompleto()
+        {
+            MySqlDataReader resultado = null;
+
+            try
+            {
+                DAOConexao.con.Open();
+                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Estudio_Aluno where ativo = '" + 1 + "'", DAOConexao.con);
+                resultado = consulta.ExecuteReader();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            return resultado;
+        }
+
+        public MySqlDataReader consultarAlunoCompleto()
+        {
+            MySqlDataReader resultado = null;
+
+            try
+            {
+                DAOConexao.con.Open();
+                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Estudio_Aluno where nomeAluno = '" + Nome + "'", DAOConexao.con);
+                resultado = consulta.ExecuteReader();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            return resultado;
+        }
+
+
         public bool cadastrarAluno()
         {
             bool cad = false;
@@ -264,13 +306,11 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                if (verificaCPF())
-                {
+       
                     Console.WriteLine("update Estudio_Aluno set nomeAluno = '" + Nome + "', ruaAluno = '" + Rua + "', numeroAluno = '" + Numero + "', bairroAluno = '" + Bairro + "' complementoAluno ='" + Complemento + "',CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno = '" + Telefone + "', emailAluno = '" + Email + "' where CPFAluno = '" + CPF + "'");
                     MySqlCommand atualiza = new MySqlCommand("update Estudio_Aluno set nomeAluno = '" + Nome + "', ruaAluno = '" + Rua + "', numeroAluno = '" + Numero + "', bairroAluno = '" + Bairro + "', complementoAluno ='" + Complemento + "',CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno = '" + Telefone + "', emailAluno = '" + Email + "', set ativa = 1 where CPFAluno = '" + CPF + "';", DAOConexao.con);
                     atualiza.ExecuteNonQuery();
                     exc = true;
-                }
                  
 
             }
@@ -284,12 +324,13 @@ namespace Estudio
             }
             return exc;
         }
-        public bool verificaCPF() 
+        public bool verificaCPF(string CPF) //string CPF - sem parâmetro
         {
             int soma, resto, cont = 0;
             soma = 0;
 
             CPF = CPF.Trim();
+            CPF = CPF.Replace(",", "");
             CPF = CPF.Replace(".", "");
             CPF = CPF.Replace("-", "");
 
