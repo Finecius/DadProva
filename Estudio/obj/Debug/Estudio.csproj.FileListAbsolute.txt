@@ -74,3 +74,4 @@ D:\DAD\PROJETO2semestre-2\Estudio\obj\Debug\Estudio.csproj.CopyComplete
 D:\DAD\PROJETO2semestre-2\Estudio\obj\Debug\Estudio.exe
 D:\DAD\PROJETO2semestre-2\Estudio\obj\Debug\Estudio.pdb
 D:\DAD\PROJETO2semestre-2\Estudio\obj\Debug\Estudio.Form11.resources
+D:\DAD\PROJETO2semestre-2\Estudio\obj\Debug\Estudio.Form12.resources
