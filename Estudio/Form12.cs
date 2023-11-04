@@ -16,11 +16,6 @@ namespace Estudio
         public Form12()
         {
             InitializeComponent();
-        }
-
-        private void Form12_Load(object sender, EventArgs e)
-        {
-            InitializeComponent();
 
             WindowState = FormWindowState.Maximized;
 
@@ -41,6 +36,11 @@ namespace Estudio
             DAOConexao.con.Close();
         }
 
+        private void Form12_Load(object sender, EventArgs e)
+        {
+            
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -48,18 +48,22 @@ namespace Estudio
             String nomeModal = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
             String nomeAluno = dataGridView2.SelectedRows[0].Cells[0].Value.ToString();
 
-            int idAluno, idTurma, idModal;
+            int  idTurma, idModal;
+            String idAluno;
+
             Modalidade modalidade = new Modalidade(nomeModal);
             MySqlDataReader r = modalidade.consultarModal();
             r.Read();
             idModal = (int)r["idEstudio_Modalidade"];
+            r.Close();
 
             DAOConexao.con.Close();
 
             Turma turma = new Turma(idModal);
-            MySqlDataReader h =turma.consultarTurma();
+            MySqlDataReader h = turma.consultarTurma();
             h.Read();
             idTurma = (int)h["idEstudio_Turma"];
+            h.Close();
 
             DAOConexao.con.Close();
 
@@ -67,7 +71,8 @@ namespace Estudio
             Aluno aluno = new Aluno(nomeAluno);
             MySqlDataReader i = aluno.consultarAlunoCompleto();
             i.Read();
-            idAluno = (int)i["CPFAluno"];
+            idAluno = i["CPFAluno"].ToString();
+            i.Close();
 
             DAOConexao.con.Close();
 

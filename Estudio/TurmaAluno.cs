@@ -9,18 +9,21 @@ namespace Estudio
 {
     class TurmaAluno
     {
-        private int idTurmaAluno, idTurma, idAluno;
+        private int idTurmaAluno, idTurma;
 
-        private String descricaoModalidade, nomeAluno;
+        
+
+        private String descricaoModalidade, nomeAluno, idAluno;
 
 
         public int IdTurmaAluno { get => idTurmaAluno; set => idTurmaAluno = value; }
         public int IdTurma { get => idTurma; set => idTurma = value; }
-        public int IdAluno { get => idAluno; set => idAluno = value; }
+    
         public string DescricaoModalidade { get => descricaoModalidade; set => descricaoModalidade = value; }
-        public string NomeAluno { get => nomeAluno; set => nomeAluno = value; }
+        public string NomeAluno { get => NomeAluno1; set => NomeAluno1 = value; }
+        public string NomeAluno1 { get => nomeAluno; set => nomeAluno = value; }
 
-        public TurmaAluno(int idTurma, int idAluno)
+        public TurmaAluno(int idTurma, String idAluno)
         {
          
             this.idTurma = idTurma;
@@ -30,7 +33,7 @@ namespace Estudio
         public TurmaAluno(string descricaoModalidade, string nomeAluno)
         {
             this.descricaoModalidade = descricaoModalidade;
-            this.nomeAluno = nomeAluno;
+            this.NomeAluno1 = nomeAluno;
         }
 
         public TurmaAluno()

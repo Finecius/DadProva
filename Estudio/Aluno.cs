@@ -245,7 +245,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Estudio_Aluno where nomeAluno = '" + Nome + "'", DAOConexao.con);
+                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Estudio_Aluno where nomeAluno = '" + Nome + "';", DAOConexao.con);
                 resultado = consulta.ExecuteReader();
 
             }
