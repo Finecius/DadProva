@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,6 @@ namespace Estudio
         public Form3()
         {
             InitializeComponent();
-            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -45,8 +45,23 @@ namespace Estudio
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEndereco.Text, txtNumero.Text, txtBairro.Text, txtComplemento.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTelefone.Text, txtEmail.Text);
-
+            
+            byte[] foto = ConverterFotoParaByteArray();
+            Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEndereco.Text, txtNumero.Text, txtBairro.Text, txtComplemento.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTelefone.Text, txtEmail.Text, foto);
+             byte[] ConverterFotoParaByteArray()
+            {
+                using (var stream = new System.IO.MemoryStream())
+                {
+                    pictureBox1.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    //deslocamento de bytes em relação ao parâmetro original
+                    //redefine a posição do fluxo para a gravação
+                    stream.Seek(0, System.IO.SeekOrigin.Begin);
+                    byte[] bArray = new byte[stream.Length];
+                    //Lê um bloco de bytes e grava os dados em um buffer (stream)
+                    stream.Read(bArray, 0, System.Convert.ToInt32(stream.Length));
+                    return bArray;
+                }
+            }
             if (aluno.consultarAluno())
             {
                
@@ -120,10 +135,26 @@ namespace Estudio
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
+            
+                OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.Title = "Abrir foto";
-            dialog.Filter = "JPG";
+                dialog.Title = "Abrir Foto";
+                dialog.Filter = "JPG (*.jpg)|*.jpg" + "|All files (*.*)|*.*";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        pictureBox1.Image = new Bitmap(dialog.OpenFile());
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Não foi possivel carregar a foto: " + ex.Message);
+                    }
+                }
+                dialog.Dispose();
+            
         }
     }
 }

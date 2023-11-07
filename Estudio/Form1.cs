@@ -156,5 +156,19 @@ namespace Estudio
             form12.MdiParent = this;
             form12.Show();
         }
+
+        private void excluirToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Form13 form13 = new Form13();
+            form13.MdiParent = this;
+            form13.Show();
+        }
+
+        private void consultarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form14 form14 = new Form14();
+            form14.MdiParent = this;
+            form14.Show();
+        }
     }
 }

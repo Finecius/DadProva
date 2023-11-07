@@ -46,6 +46,32 @@ namespace Estudio
         {
         }
 
+
+
+        public bool verficaModalidade()
+        {
+            bool existe = false;
+            try
+            {
+                DAOConexao.con.Open();
+                MySqlCommand ex = new MySqlCommand("select * from Modalidade where descricaoModalidade  = " + descricao + " and precoModalidade = '" + preco + "' and qtdeAlunos = '" + qtde_alunos + "' and qtdeAulas = '" + qtde_aulas + "'", DAOConexao.con);
+                MySqlDataReader exr = ex.ExecuteReader();
+                while (exr.Read())
+                {
+                    existe = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAOConexao.con.Close();
+            }
+            return existe;
+        }
+
         public MySqlDataReader consultarModal()
         {
             MySqlDataReader resultado = null;
@@ -53,7 +79,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Modalidade where descricaoModalidade = '" + descricao + "'", DAOConexao.con);
+                MySqlCommand consulta = new MySqlCommand("SELECT * FROM Modalidade where descricaoModalidade = '" + descricao + "';", DAOConexao.con);
                  resultado = consulta.ExecuteReader();
              
             }
@@ -72,7 +98,7 @@ namespace Estudio
             try
             {
                 DAOConexao.con.Open();
-                MySqlCommand insere = new MySqlCommand("insert into Modalidade (descricaoModalidade, precoModalidade, qtdeAlunos, qtdeAulas,ativa) values ('" + descricao + "','" + preco + "','" + qtde_alunos + "','" + qtde_aulas +"','1');", DAOConexao.con);
+                MySqlCommand insere = new MySqlCommand("INSERT INTO Modalidade (descricaoModalidade, precoModalidade, qtdeAlunos, qtdeAulas ,ativa) VALUES ('" + descricao + "','" + preco + "','" + qtde_alunos + "','" + qtde_aulas +"','1');", DAOConexao.con);
                 insere.ExecuteNonQuery();
                 cad = true;
             }

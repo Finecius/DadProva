@@ -46,7 +46,7 @@ namespace Estudio
             String dia = comboBox2.SelectedItem.ToString();
             String hora = comboBox3.SelectedItem.ToString();
 
-            Turma turma = new Turma( dia, hora);
+            Turma turma = new Turma(dia, hora);
             Modalidade modalidade = new Modalidade(modal);
 
             if (turma.excluirTurma())

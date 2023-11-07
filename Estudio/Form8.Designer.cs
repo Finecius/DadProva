@@ -61,7 +61,7 @@ namespace Estudio
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(472, 426);
+            this.groupBox1.Size = new System.Drawing.Size(472, 392);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Turma ";
@@ -77,7 +77,7 @@ namespace Estudio
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(126, 105);
+            this.maskedTextBox1.Location = new System.Drawing.Point(125, 100);
             this.maskedTextBox1.Mask = "90:00";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
@@ -89,7 +89,7 @@ namespace Estudio
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.modalidade});
-            this.dataGridView1.Location = new System.Drawing.Point(40, 206);
+            this.dataGridView1.Location = new System.Drawing.Point(40, 159);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -97,10 +97,6 @@ namespace Estudio
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(390, 214);
             this.dataGridView1.TabIndex = 9;
-            this.dataGridView1.RowHeadersWidthSizeModeChanged += new System.Windows.Forms.DataGridViewAutoSizeModeEventHandler(this.dataGridView1_RowHeadersWidthSizeModeChanged);
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // modalidade
@@ -113,7 +109,7 @@ namespace Estudio
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(126, 169);
+            this.button1.Location = new System.Drawing.Point(124, 130);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(304, 23);
             this.button1.TabIndex = 8;
@@ -141,7 +137,6 @@ namespace Estudio
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(304, 20);
             this.textBox1.TabIndex = 4;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label4
             // 
@@ -173,7 +168,7 @@ namespace Estudio
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(55, 15);
+            this.label1.Location = new System.Drawing.Point(53, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 0;
@@ -183,11 +178,10 @@ namespace Estudio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 450);
+            this.ClientSize = new System.Drawing.Size(496, 412);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form8";
             this.Text = "Form8";
-            this.Load += new System.EventHandler(this.Form8_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

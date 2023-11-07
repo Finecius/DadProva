@@ -22,6 +22,8 @@ namespace Estudio
             
         }
 
+        List<Modalidade> listaModalidade = new List<Modalidade>();
+
         public Form8()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace Estudio
             WindowState = FormWindowState.Maximized;
 
             Modalidade conMod = new Modalidade();
+            textBox1.Enabled = false;
             MySqlDataReader r = conMod.consultartodasModal();
             while (r.Read())
             {
@@ -36,68 +39,58 @@ namespace Estudio
             }
             DAOConexao.con.Close();
         }
-
-        private void Form8_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Modalidade modalidadeEscolhida = new Modalidade(textBox1.Text);
-            MySqlDataReader r = modalidadeEscolhida.consultarModal();
-            r.Read();
-            int idModalidadeEscolhida = int.Parse(r["idEstudio_Modalidade"].ToString());
-            
+            int idModalidadeEscolhida = 0;
+            String mod = textBox1.Text;
             String professor = textBox2.Text;
             String dia = textBox3.Text;
             String hora = maskedTextBox1.Text;
 
-            Turma turma = new Turma(idModalidadeEscolhida, professor, dia, hora);
+
+            
+            Modalidade modalidadeEscolhida = new Modalidade(mod);
+            MySqlDataReader r = modalidadeEscolhida.consultartodasModal();
+
+            while(r.Read())
+            {
+                string descricao = r["descricaoModalidade"].ToString();
+                float preco = (float) r["precoModalidade"];
+                int qtde_alunos = (int)r["qtdeAlunos"];
+                int qtde_aulas = (int)r["qtdeAulas"];
+                int id = (int) r["idEstudio_Modalidade"];
+                Modalidade modalidade = new Modalidade(id, descricao,  preco,  qtde_alunos, qtde_aulas);
+
+                listaModalidade.Add(modalidade);
+            }
+
             DAOConexao.con.Close();
 
+            idModalidadeEscolhida = listaModalidade[dataGridView1.CurrentCell.RowIndex].Id;
+
+            Turma turma = new Turma(idModalidadeEscolhida, professor, dia, hora);
+            if (turma.verificaTurma() == false) {
+            
             if (turma.cadastrarTurma())
             {
                 MessageBox.Show("Turma cadastrada com sucesso!");
                 limpar();
             }
-            else
+                else
             {
                 MessageBox.Show("Falha ao cadastrar Turma!");
             }
+            } else
+            {
+                MessageBox.Show("Turma ja existente..");
+            }
         }
-
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e) 
         {
            
                 String modalidadeescolhida = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
                 textBox1.Text = modalidadeescolhida;
 
-        }
-
-        private void dataGridView1_RowHeadersWidthSizeModeChanged(object sender, DataGridViewAutoSizeModeEventArgs e)
-        {
-
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-          
         }
     }
 }

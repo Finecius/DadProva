@@ -28,7 +28,10 @@ namespace Estudio
         private bool Ativo;
 
        
-        public Aluno(string cpf, string nome, string rua, string numero, string bairro, string complemento, string cep, string cidade, string estado, string telefone, string email)
+
+
+
+        public Aluno(string cpf, string nome, string rua, string numero, string bairro, string complemento, string cep, string cidade, string estado, string telefone, string email, byte[] foto)
         {
             setCPF(cpf);
             setNome(nome);
@@ -41,7 +44,7 @@ namespace Estudio
             setEstado(estado);
             setTelefone(telefone);
             setEmail(email);
-         
+            setFoto(foto);
         }
 
         public Aluno(string nome, string rua, string numero, string bairro, string complemento, string cep, string cidade, string estado, string telefone, string email)
@@ -57,7 +60,7 @@ namespace Estudio
             setEstado(estado);
             setTelefone(telefone);
             setEmail(email);
-
+            
         }
 
         public Aluno() { }
@@ -192,6 +195,7 @@ namespace Estudio
         {
             this.Ativo = ativo;
         }
+
 
         public bool consultarAluno()
         {

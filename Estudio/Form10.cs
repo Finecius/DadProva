@@ -22,6 +22,8 @@ namespace Estudio
 
         }
 
+        List<Modalidade> listaModalidade = new List<Modalidade>();
+
         public Form10()
         {
             InitializeComponent();
@@ -59,30 +61,46 @@ namespace Estudio
             }
             else
             {
-                Modalidade modal = new Modalidade(textBox1.Text);
-                MySqlDataReader r= modal.consultarModal();
-
-                r.Read();
-                int id = int.Parse(r["idEstudio_Modalidade"].ToString());
-                DAOConexao.con.Close();
-
-                
-
+                int idModalidadeEscolhida = 0;
+                String mod = textBox1.Text;
                 String professor = textBox2.Text;
                 String dia = textBox3.Text;
-                String Hora = textBox4.Text;
-                Turma turma = new Turma(id, professor, dia, Hora);
+                String hora = maskedTextBox1.Text;
 
-                if (turma.atualizarTurma(textBox1.Text))
-                    MessageBox.Show("Turma atualizada");
-                else
-                    MessageBox.Show("Erro!");
-                
 
-             
 
+                Modalidade modalidadeEscolhida = new Modalidade(mod);
+                MySqlDataReader r = modalidadeEscolhida.consultartodasModal();
+
+                while (r.Read())
+                {
+                    string descricao = r["descricaoModalidade"].ToString();
+                    float preco = (float)r["precoModalidade"];
+                    int qtde_alunos = (int)r["qtdeAlunos"];
+                    int qtde_aulas = (int)r["qtdeAulas"];
+                    int id = (int)r["idEstudio_Modalidade"];
+                    Modalidade modalidade = new Modalidade(id, descricao, preco, qtde_alunos, qtde_aulas);
+
+                    listaModalidade.Add(modalidade);
+                }
+
+                DAOConexao.con.Close();
+
+                idModalidadeEscolhida = listaModalidade[dataGridView1.CurrentCell.RowIndex].Id;
+
+                Turma turma = new Turma(idModalidadeEscolhida, professor, dia, hora);
+                if (turma.verificaTurma() == false)
+                {
+                    if (turma.atualizarTurma(textBox1.Text))
+                        MessageBox.Show("Turma atualizada");
+                    else
+                        MessageBox.Show("Erro!");
+                } else {
+                    MessageBox.Show("Erro durante a verificação!");
+                }
             }
         }
+    
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

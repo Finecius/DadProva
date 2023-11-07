@@ -30,37 +30,40 @@ namespace Estudio
 
         private void label2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+
             String descricao = textBox1.Text;
             float preco = float.Parse(textBox2.Text);
             int qtdeAlunos = int.Parse(textBox3.Text);
             int qtedeAulas = int.Parse(textBox4.Text);
+            string desc = "";
 
-            
             Modalidade modalidade = new Modalidade(descricao, preco, qtdeAlunos, qtedeAulas);
-
-
             MySqlDataReader r = modalidade.consultarModal();
 
-            r.Read();
-            string desc = r["descricaoModalidade"].ToString();
-
-            if (desc.Equals(descricao))
-                MessageBox.Show("Modalidade ja existente");
-            else
+            while (r.Read())
             {
+                desc = r["descricaoModalidade"].ToString();
 
+            }
+
+            if (modalidade.verficaModalidade() == false)
+            {
                 if (modalidade.cadastrarModal())
                     MessageBox.Show("Cadastro realizado com sucesso");
+
                 else
                     MessageBox.Show("Erro no cadastro");
             }
-            
-
+            else
+            {
+                MessageBox.Show("Modalidade ja existente");
+            }
         }
     }
 }
